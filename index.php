@@ -1,3 +1,4 @@
-require('controller/frontend.php')
+<?php
+require('controller/frontend.php');
 
 listEpisodes();

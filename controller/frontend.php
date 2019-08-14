@@ -1,6 +1,7 @@
-require('model/model.php')
+<?php
+require('model/model.php');
 
-function listEpisodes() 
+function listEpisodes()
 {
     $episode = getEpisodes();
     require('view/listEpisodeView.php');   
