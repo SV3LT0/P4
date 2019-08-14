@@ -6,9 +6,9 @@ try {
         if($_GET['action'] == 'listEpisodes'){
             listEpisodes();
         }
-        elseif($_GET['action'] == 'episode'){
+        elseif($_GET['action'] == 'post'){
             if(isset($_GET['id']) && $_GET['id']>0){
-                episode();
+                post();
             }
         }
     }
