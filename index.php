@@ -1,3 +1,3 @@
 require('controller/frontend.php')
 
-listEpisodes();
+listEpisode();
