@@ -3,6 +3,6 @@ require('model/model.php');
 
 function listEpisodes()
 {
-    $episode = getEpisodes();
+    $episodes = getEpisodes();
     require('view/listEpisodeView.php');   
 }
