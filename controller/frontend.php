@@ -9,7 +9,7 @@ function listEpisodes()
 
 function post()
 {
-    $post = getPost($_GET['id']);
+    $post = getEpisode($_GET['id']);
     $comments = getComments($_GET['id']);
 
     require('view/postView.php');

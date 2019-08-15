@@ -18,7 +18,7 @@ while ($data = $episodes-> fetch())
         <p>
             <?= nl2br(htmlspecialchars($data['contenu']))?>
             <br/>
-            <a href="index.php?action=episode&amp;id=<?$data['id'] ?>">Commentaires</a>
+            <a href="index.php?action=post&amp;id=<?=$data['id'] ?>">Commentaires</a>
         </p>
     </div>
 <?php

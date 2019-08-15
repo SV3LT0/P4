@@ -16,11 +16,11 @@ function dbConnect()
 function getEpisode($episodeId)
 {
     $db = dbConnect();
-    $req = $db ->query('SELECT id, titre, contenu, DATE_FORMAT(creation_date, "%d/%m/%Y")AS creation_date_fr FROM episode WHERE id = ?');
+    $req = $db->query('SELECT id, titre, contenu, DATE_FORMAT(creation_date, "%d/%m/%Y")AS creation_date_fr FROM episode WHERE id = ?');
     $req->execute(array($episodeId));
     $episode = $req->fetch();
 
-    return $episode
+    return $episode;
 }
 
 function getComments($episodeId)
