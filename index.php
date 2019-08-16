@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require('controller/frontend.php');
 
 try {
@@ -12,8 +15,10 @@ try {
             }
         }
     }
+    else{
+        listEpisodes();
+    }
 }
 catch(Exception $e){
     echo 'Erreur : '. $e->getMessages();
 }
-listEpisodes();

@@ -1,4 +1,4 @@
-<?php $title = htmlspecialchars($episode['title']); ?>
+<?php $title = htmlspecialchars($episode['titre']); ?>
 
 <?php ob_start(); ?>
 <h1>Billet simple pour l'Alaska</h1>
@@ -6,8 +6,8 @@
 
 <div>
     <h2>
-        <?= htmlspecialchars($episode['title'])?>
-        <em>le <?= post['creation_date_fr']?></em>
+        <?= htmlspecialchars($episode['titre'])?>
+        <em>le <?= $episode['creation_date_fr']?></em>
     </h2>
 
     <p>
@@ -18,13 +18,14 @@
 <h3>Commentaires</h3>
 
 <?php 
-while ($comments = $comments->fetch())
+while ($comment = $comments->fetch())
 {
 ?>
-    <p><strong><?htmlspecialchars($comments['auteur']) ?></strong> le <?= $comments['comment_date'] ?></p>
-    <p><?= nl2br(htmlspecialchars($comments['contenu'])) ?></p>
+    <p><strong><?= htmlspecialchars($comment['auteur']) ?></strong> le <?= $comment['comment_date'] ?></p>
+    <p><?= nl2br(htmlspecialchars($comment['contenu'])) ?></p>
 <?php
 }
+$comments->closeCursor();
 ?>
 
 <?php $content = ob_get_clean();?>

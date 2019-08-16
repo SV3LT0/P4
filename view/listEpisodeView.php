@@ -6,7 +6,7 @@
 <p>Derniers épisodes</p>
 
 <?php 
-while ($data = $episodes-> fetch())
+while ($data = $episodes->fetch())
 {
 ?>
     <div>
