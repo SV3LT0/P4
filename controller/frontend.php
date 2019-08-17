@@ -14,3 +14,15 @@ function post()
 
     require('view/postView.php');
 }
+
+function addComment($episodeId, $auteur, $comment)
+{
+    $affectedLines = postComment($episodeId, $auteur, $comment);
+
+    if($affectedLines === false){
+        throw new Exception('Impossible d\'ajouter le commentaire');
+    }
+    else{
+        header('Location: index.php?action=post&id=' . $episodeId);
+    }
+}

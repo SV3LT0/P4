@@ -31,3 +31,12 @@ function getComments($episodeId)
     
     return $comments;
 }
+
+function postComment($episodeId, $auteur, $comment)
+{
+    $db = dbConnect();
+    $comments = $db->prepare('INSERT INTO commentaire(idEpisode, auteur, contenu, dateComm)VALUES(?,?,?,NOW())');
+    $affectedLines = $comments->execute(array($episodeId, $auteur, $comment));
+
+    return $affectedLines;
+}

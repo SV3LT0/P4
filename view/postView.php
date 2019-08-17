@@ -17,6 +17,20 @@
 
 <h3>Commentaires</h3>
 
+<form action= "index.php?action=addComment&amp;id=<?=$episode['id']?>" method="post">
+    <div>
+        <label for="auteur">Pseudo</label><br/>
+        <input type="text" id="auteur" name="auteur"/>
+    </div>
+    <div>
+        <label for="commentaire">Commentaire</label><br/>
+        <textarea id="commentaire" name="commentaire"></textarea>
+    </div>
+    <div>
+        <input type="submit"/>
+    </div>
+</form>
+
 <?php 
 while ($comment = $comments->fetch())
 {
