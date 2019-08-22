@@ -12,6 +12,9 @@ if(isset($_SESSION['id'])) {
             <input type='password'name='mdp' id='mdp'/>
             <input type='submit' value="Connexion"/>
         </form>
+        <form action="index.php$action=inscription" method="post">
+            <input type='sumbit' value='Inscription'/>
+        </form>
     <?php
 } ?>
 

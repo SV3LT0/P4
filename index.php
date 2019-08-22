@@ -25,7 +25,10 @@ try {
                 throw new Exception('Tous les champs ne sont pas remplis');
             }
         }
-        elseif($_GET['action']=='connexion'){
+        elseif($_GET['action']=='inscription'){
+            inscription();
+        }
+        elseif($_GET['action']=='addUser'){
             if(preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#',$_POST['mdp'])){
                 inscription($_POST['pseudo'],$_POST['mdp']);
             }

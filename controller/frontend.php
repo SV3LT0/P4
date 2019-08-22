@@ -29,6 +29,8 @@ function addComment($episodeId, $auteur, $comment)
     }
 }
 
+
+
 function inscription($pseudo, $mdp)
 {
     $affectedLines = addUser($pseudo, $mdp);
