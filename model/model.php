@@ -40,3 +40,14 @@ function postComment($episodeId, $auteur, $comment)
 
     return $affectedLines;
 }
+
+function addUser($pseudo, $mdp){
+    $mdp_hach = password_hash($mdp, PASSWORD_DEFAULT);
+
+    $db = dbConnect();
+
+    $req = $db->prepare('INSERT INTO utilisateur(pseudo, mdp, isAdmin) VALUES (:pseudo, :mdp, 0)');
+    $affectedLines = $req->execute(array(
+        'pseudo'=>$pseudo,
+        'mdp'=> $mdp_hach));
+}

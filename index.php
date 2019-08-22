@@ -25,6 +25,17 @@ try {
                 throw new Exception('Tous les champs ne sont pas remplis');
             }
         }
+        elseif($_GET['action']=='connexion'){
+            if(preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#',$_POST['mdp'])){
+                inscription($_POST['pseudo'],$_POST['mdp']);
+            }
+            else {
+                throw new Exception('Mot de passe non conforme');
+            } 
+        }
+        else{
+            throw new Exception('Tous les champs ne sont pas remplis');
+        }
     }
     else{
         listEpisodes();

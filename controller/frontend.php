@@ -4,7 +4,9 @@ require('model/model.php');
 function listEpisodes()
 {
     $episodes = getEpisodes();
-    require('view/listEpisodeView.php');   
+  
+    require('view/member.php');
+    require('view/listEpisodeView.php'); 
 }
 
 function post()
@@ -25,4 +27,18 @@ function addComment($episodeId, $auteur, $comment)
     else{
         header('Location: index.php?action=post&id=' . $episodeId);
     }
+}
+
+function inscription($pseudo, $mdp)
+{
+    $affectedLines = addUser($pseudo, $mdp);
+
+    if($affectedLines === false){
+        throw new Exception ('Impossible d\'ajouter l\'utilisateur');
+    }
+    else{
+        header('Location: index.php');
+    }
+
+    require('view/member.php');
 }

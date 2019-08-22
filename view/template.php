@@ -7,6 +7,7 @@
     </head>
 
     <body>
+        <?= $connexion ?>
         <?= $content ?>
     </body>
 </html>
