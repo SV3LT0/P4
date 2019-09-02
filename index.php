@@ -26,15 +26,18 @@ try {
             }
         }
         elseif($_GET['action']=='inscription'){
-            inscription();
+            pageInscription();
         }
-        elseif($_GET['action']=='addUser'){
-            if(preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#',$_POST['mdp'])){
+        elseif($_GET['action']=='adduser'){
+            if(!preg_match('#^(?=.*[a-z])(?=.*[0-9])#',$_POST['mdp'])){
+                throw new Exception('Mot de passe non conforme');
+            }
+            elseif($_POST['mdp']!=$_POST['verifMdp']) {
+                throw new Exception('Les deux mot de passe ne correspondent pas');
+            }
+            else{
                 inscription($_POST['pseudo'],$_POST['mdp']);
             }
-            else {
-                throw new Exception('Mot de passe non conforme');
-            } 
         }
         else{
             throw new Exception('Tous les champs ne sont pas remplis');
@@ -45,5 +48,5 @@ try {
     }
 }
 catch(Exception $e){
-    echo 'Erreur : '. $e->getMessages();
+    echo 'Erreur : '. $e->getMessage();
 }
