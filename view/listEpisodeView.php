@@ -5,6 +5,8 @@
 <h1>Billet simple pour l'Alaska</h1>
 <p>Derniers épisodes</p>
 
+<a href="index.php?action=newepisode"><button>Écrire un nouveau chapitre</button></a><br/>
+
 <?php 
 while ($data = $episodes->fetch())
 {

@@ -3,6 +3,9 @@
 
 <?php ob_start(); ?>
 <h1>Billet simple pour l'Alaska</h1>
+
+<p><a href="index.php">Retour</a></p>
+
 <h3>Inscription</h3>
 <form action="index.php?action=adduser" method="post">
     <label for='pseudo'> Pseudo </label>

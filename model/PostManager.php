@@ -24,8 +24,15 @@ class PostManager extends Manager
 
         return $episode;
     }
+
+    public function newEpisode($titre, $contenu)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('INSERT INTO episode(titre, contenu, creation_date)VALUES(:titre,:contenu,CURDATE())');
+        $nouveauEpisode = $req->execute(array('titre'=>$titre, 'contenu'=>$contenu));
+        
+        return $nouveauEpisode;
+    }
 }
-
-
 
 ?>

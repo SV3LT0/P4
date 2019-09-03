@@ -26,7 +26,6 @@ function post()
 function addComment($episodeId, $auteur, $comment)
 {
     $commentManager = new \P4\model\CommentManager();    
-
     $affectedLines = $commentManager->postComment($episodeId, $auteur, $comment);
 
     if($affectedLines === false){
@@ -34,6 +33,37 @@ function addComment($episodeId, $auteur, $comment)
     }
     else{
         header('Location: index.php?action=post&id=' . $episodeId);
+    }
+}
+
+function deleteComm($id, $episodeId)
+{
+    $commentManager = new \P4\model\CommentManager();
+    $affectedLines = $commentManager->deleteComment($id, $episodeId);
+
+    if($affectedLines === false){
+        throw new Exception('Impossible de supprimer le commentaire');
+    }
+    else{
+        header('Location: index.php?action=post&id=' . $episodeId);
+    }
+}
+
+function pageNewEpisode()
+{
+    require('view/newEpisode.php');
+}
+
+function addNewEpisode($titre, $contenu)
+{
+    $postManager = new \P4\model\PostManager();
+    $nouveauEpisode = $postManager->newEpisode($titre, $contenu);
+
+    if($nouveauEpisode === false){
+        throw new Exception ('Impossible d\'ajouter l\'épisode');
+    }
+    else{
+        header('Location: index.php');
     }
 }
 

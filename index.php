@@ -39,9 +39,21 @@ try {
                 inscription($_POST['pseudo'],$_POST['mdp']);
             }
         }
-        else{
-            throw new Exception('Tous les champs ne sont pas remplis');
+        elseif($_GET['action']='newepisode'){
+            pageNewEpisode();
         }
+        elseif($_GET['action']='addepisode'){   
+            addNewEpisode($_POST['titre'],$_POST['contenu']);
+        }
+        elseif($_GET['action']='deleteComm'){
+            if(isset($_GET['id']) && $_GET['id']>0){
+                deleteComm($_GET['id'],$_GET['idEpisode']);
+            }
+            else {
+                throw new Exception('Ce commentaire n\'existe pas');
+            }
+        }
+        
     }
     else{
         listEpisodes();
