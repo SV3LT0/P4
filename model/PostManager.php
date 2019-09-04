@@ -14,7 +14,6 @@ class PostManager extends Manager
         return $req;
     }
 
-
     public function getEpisode($episodeId)
     {
         $db = $this->dbConnect();
@@ -29,9 +28,18 @@ class PostManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO episode(titre, contenu, creation_date)VALUES(:titre,:contenu,CURDATE())');
-        $nouveauEpisode = $req->execute(array('titre'=>$titre, 'contenu'=>$contenu));
+        $nouvelEpisode = $req->execute(array('titre'=>$titre, 'contenu'=>$contenu));
         
-        return $nouveauEpisode;
+        return $nouvelEpisode;
+    }
+
+    public function modifierEpisode($titre, $contenu, $id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE episode SET titre=:titre, contenu=:contenu, creation_date=CURDATE() WHERE id=:id');
+        $updateEpisode = $req->execute(array('titre'=>$titre, 'contenu'=>$contenu, 'id'=>$id));
+        
+        return $updateEpisode;
     }
 }
 

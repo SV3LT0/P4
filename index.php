@@ -39,21 +39,31 @@ try {
                 inscription($_POST['pseudo'],$_POST['mdp']);
             }
         }
-        elseif($_GET['action']='newepisode'){
+        elseif($_GET['action']=='newepisode'){
             pageNewEpisode();
         }
-        elseif($_GET['action']='addepisode'){   
+        elseif($_GET['action']=='addepisode'){
             addNewEpisode($_POST['titre'],$_POST['contenu']);
         }
-        elseif($_GET['action']='deleteComm'){
+        elseif($_GET['action']=='deleteComm'){
             if(isset($_GET['id']) && $_GET['id']>0){
-                deleteComm($_GET['id'],$_GET['idEpisode']);
+                deleteComm($_GET['id'], $_GET['idEpisode']);
             }
             else {
                 throw new Exception('Ce commentaire n\'existe pas');
             }
+        }  
+        elseif($_GET['action']=='modifier'){
+            if(isset($_GET['id']) && $_GET['id']>0){
+                pageUpdate();
+            }
+            else {
+                throw new Exception('Aucun identifiant d\'épisode envoyé');
+            }
         }
-        
+        elseif($_GET['action']=='update'){
+            updateEpisode($_POST['titre'],$_POST['contenu'],$_GET['id']);
+        }  
     }
     else{
         listEpisodes();

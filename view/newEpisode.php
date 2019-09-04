@@ -8,12 +8,12 @@
 
 <h3>Ecriture d'un nouvel épisode</h3>
 
-<form method="post" action="index.php?action=addepisode">
-<label for="titre">Titre</label>
-<input type="text" name="titre" id="titre" required><br>
-<label for="contenu"></label>
-<textarea name="contenu" id="mytextarea" placeholder ="Ecrire le contenu du chapitre" required></textarea><br>
-<input type="submit" value="Publier">
+<form action="index.php?action=addepisode" method="post">
+    <label for="titre">Titre</label>
+    <input type="text" name="titre" id="titre"/><br>
+    <label for="contenu"></label>
+    <textarea name="contenu" id="mytextarea"></textarea><br>
+    <input type="submit"/>
 </form>
 
 <?php $content = ob_get_clean();?>

@@ -6,10 +6,34 @@ require_once('model/PostManager.php');
 function listEpisodes()
 {
     $postManager = new \P4\model\PostManager();
+    $commentManager = new \P4\model\CommentManager();
 
     $episodes = $postManager->getEpisodes();
-  
+    $commentsReported = $commentManager->getCommentsReported();
+    
     require('view/listEpisodeView.php');
+}
+
+function pageUpdate()
+{
+    $postManager = new \P4\model\PostManager();
+
+    $episode = $postManager->getEpisode($_GET['id']);
+  
+    require('view/updateEpisode.php');
+}
+
+function updateEpisode($titre, $contenu, $id)
+{
+    $postManager = new \P4\model\PostManager();
+    $updateEpisode = $postManager->modifierEpisode($titre, $contenu, $id);
+
+    if($updateEpisode === false){
+        throw new Exception ('Impossible de modifier l\'épisode');
+    }
+    else{
+        header('Location: index.php');
+    }
 }
 
 function post()
@@ -39,7 +63,7 @@ function addComment($episodeId, $auteur, $comment)
 function deleteComm($id, $episodeId)
 {
     $commentManager = new \P4\model\CommentManager();
-    $affectedLines = $commentManager->deleteComment($id, $episodeId);
+    $affectedLines = $commentManager->deleteComment($id);
 
     if($affectedLines === false){
         throw new Exception('Impossible de supprimer le commentaire');
@@ -56,15 +80,21 @@ function pageNewEpisode()
 
 function addNewEpisode($titre, $contenu)
 {
+    
     $postManager = new \P4\model\PostManager();
-    $nouveauEpisode = $postManager->newEpisode($titre, $contenu);
+    $nouvelEpisode = $postManager->newEpisode($titre, $contenu);
 
-    if($nouveauEpisode === false){
+    if($nouvelEpisode === false){
         throw new Exception ('Impossible d\'ajouter l\'épisode');
     }
     else{
         header('Location: index.php');
     }
+}
+
+function pageModifier($id)
+{
+    require('view/updateEpisode.php');
 }
 
 function pageInscription()
