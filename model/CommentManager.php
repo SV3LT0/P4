@@ -18,8 +18,8 @@ class CommentManager extends Manager
     public function postComment($episodeId, $auteur, $comment)
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('INSERT INTO commentaire(idEpisode, auteur, contenu, dateComm)VALUES(:idEpisode,:auteur,:contenu,NOW())');
-        $affectedLines = $comments->execute(array('idEpisode'=>$episodeId,'auteur'=>$auteur,'contenu'=>$comment));
+        $req = $db->prepare('INSERT INTO commentaire(idEpisode, auteur, contenu, dateComm, signale)VALUES(:idEpisode,:auteur,:contenu,NOW(),0)');
+        $affectedLines = $req->execute(array('idEpisode'=>$episodeId,'auteur'=>$auteur,'contenu'=>$comment));
     
         return $affectedLines;
     }
@@ -32,6 +32,15 @@ class CommentManager extends Manager
 
         return $affectedLines;
     }
+
+    public function signaleCommentaire($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE commentaire SET signale=1 WHERE id=:id');
+        $commentSignale = $req->execute(array('id'=>$id));
+
+        return $commentSignale;
+    }
     
     public function getCommentsReported()
     {
@@ -39,6 +48,24 @@ class CommentManager extends Manager
         $req = $db->query('SELECT id, auteur, contenu, idEpisode, signale, DATE_FORMAT(dateComm, "%d/%m/%Y à %Hh%imin%ss")AS comment_date FROM commentaire WHERE signale = 1');
         
         return $req;
+    }
+    
+    public function countCommReport()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT COUNT(*) FROM commentaire WHERE signale = 1');
+        $nbCommentaireReported = $req->fetchColumn();
+
+        return $nbCommentaireReported;
+    }
+
+    public function annuleSignale($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE commentaire SET signale=0 WHERE id=:id');
+        $annuleSignale = $req->execute(array('id'=>$id));
+
+        return $annuleSignale;
     }
 }
 

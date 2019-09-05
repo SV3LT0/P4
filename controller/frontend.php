@@ -8,9 +8,10 @@ function listEpisodes()
     $postManager = new \P4\model\PostManager();
     $commentManager = new \P4\model\CommentManager();
 
-    $episodes = $postManager->getEpisodes();
+    $episodes = $postManager->getEpisodes();    
     $commentsReported = $commentManager->getCommentsReported();
-    
+    $nbCommReport = $commentManager-> countCommReport();
+
     require('view/listEpisodeView.php');
 }
 
@@ -70,6 +71,32 @@ function deleteComm($id, $episodeId)
     }
     else{
         header('Location: index.php?action=post&id=' . $episodeId);
+    }
+}
+
+function reportComm($id, $episodeId)
+{
+    $commentManager = new \P4\model\CommentManager();
+    $commentSignale = $commentManager->signaleCommentaire($id);
+
+    if($commentSignale === false){
+        throw new Exception('Impossible de signaler le commentaire');
+    }
+    else{
+        header('Location: index.php?action=post&id=' . $episodeId);
+    }
+}
+
+function cancelReport($id)
+{
+    $commentManager = new \P4\model\CommentManager();
+    $annuleSignale = $commentManager->annuleSignale($id);
+
+    if($annuleSignale === false){
+        throw new Exception('Impossible d\'annuler le signaler');
+    }
+    else{
+        header('Location: index.php');
     }
 }
 

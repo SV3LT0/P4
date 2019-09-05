@@ -8,20 +8,23 @@
 
 <h4>Commentaires signalés</h4>
 <?php
-if(!$commentsReported){ ?>
-    <p>Aucun commentaire signalé</p>
-<?php
-}else{
-    while ($commSignale = $commentsReported->fetch())
+if($nbCommReport>0){
+    while($commSignale = $commentsReported->fetch())
     {
-    ?>
-        <p><strong><?= htmlspecialchars($comment['auteur']) ?></strong> le <?= $comment['comment_date'] ?> 
-        <a href="index.php?action=deleteComm&amp;id=<?=$comment['id']?>&amp;idEpisode=<?=$comment['idEpisode']?>">Supprimer</a></p>
-        <p><?= nl2br(htmlspecialchars($comment['contenu'])) ?></p>
+        ?>
+        <div id="commSignale">
+            <p><strong><?= htmlspecialchars($commSignale['auteur']) ?></strong> le <?= $commSignale['comment_date'] ?> 
+            <a href="index.php?action=deleteComm&amp;id=<?=$commSignale['id']?>&amp;idEpisode=<?=$commSignale['idEpisode']?>">Supprimer</a>
+            <a href="index.php?action=cancelReport&amp;id=<?=$commSignale['id']?>">Retirer le signalement</a></p>
+            <p><?= nl2br(htmlspecialchars($commSignale['contenu'])) ?></p>
+        </div>
     <?php
     }
+} else { ?>
+    <p>Aucun commentaire signalé</p>
+<?php
 }
-    ?>
+?>
 
 <h3>Derniers chapitres</h3>
 

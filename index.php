@@ -63,7 +63,13 @@ try {
         }
         elseif($_GET['action']=='update'){
             updateEpisode($_POST['titre'],$_POST['contenu'],$_GET['id']);
-        }  
+        }
+        elseif($_GET['action']=='reportComm'){
+            reportComm($_GET['id'],$_GET['idEpisode']);
+        }
+        elseif($_GET['action']=='cancelReport'){
+            cancelReport($_GET['id']);
+        }
     }
     else{
         listEpisodes();
