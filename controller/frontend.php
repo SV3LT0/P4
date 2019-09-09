@@ -1,7 +1,7 @@
 <?php
 require_once('model/CommentManager.php');
 require_once('model/PostManager.php');
-
+require_once('model/UserManager.php');
 
 function listEpisodes()
 {
@@ -119,27 +119,51 @@ function addNewEpisode($titre, $contenu)
     }
 }
 
-function pageModifier($id)
-{
-    require('view/updateEpisode.php');
-}
 
 function pageInscription()
 {
     require('view/inscription.php');
 }
 
-function inscription($pseudo, $mdp)
+function addUser($pseudo, $mdp)
 {
-    $mdp_hach = password_hash($mdp, PASSWORD_DEFAULT);
-    $ajoutUtilisateur = addUser($pseudo, $mdp_hach);
+    $userManager = new \P4\model\UserManager();
+    $mdp_hash = password_hash($mdp, PASSWORD_DEFAULT);
 
-    if($ajoutUtilisateur === false){
-        throw new Exception ('Impossible d\'ajouter l\'utilisateur');
-    }
-    else{
+    //$pseudoUnique = $userManager->testPseudo($pseudo);
+       $ajoutUtilisateur = $userManager->inscription($pseudo, $mdp_hash);
+
+        if($ajoutUtilisateur === false){
+            throw new Exception ('Impossible d\'ajouter l\'utilisateur');
+        }
+        else{
+            header('Location: index.php');
+        }
+}
+
+function connexion($pseudo, $mdp)
+{
+    $userManager = new \P4\model\UserManager();
+    $connexionUtilisateur = $userManager->connexionUtilisateur($pseudo, $mdp);
+
+    $passwordCorrect = password_verify($mdp, $connexionUtilisateur['mdp']);
+
+    if (!$connexionUtilisateur){
+        echo 'Mauvais identifiant ou mot de passe !';
+    } elseif ($passwordCorrect) {
+        session_start();
+        $_SESSION['pseudo'] = $pseudo;
+        $_SESSION['isAdmin'] = $connexionUtilisateur['isAdmin'];
         header('Location: index.php');
+    } else {
+        echo 'Mauvais identifiant ou mot de passe !';
     }
+}
 
-    require('view/inscription.php');
+function déconnexion()
+{
+    session_start();
+    $_SESSION = array();
+    session_destroy();
+    header('Location: index.php');
 }

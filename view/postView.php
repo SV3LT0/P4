@@ -1,5 +1,5 @@
 <?php $title = htmlspecialchars($episode['titre']); ?>
-
+<?php session_start(); ?>
 <?php ob_start(); ?>
 <h1>Billet simple pour l'Alaska</h1>
 <p><a href="index.php">Retour</a></p>
@@ -18,16 +18,23 @@
 <h3>Commentaires</h3>
 
 <form action= "index.php?action=addComment&amp;id=<?=$episode['id']?>" method="post">
-    <div>
-        <label for="auteur">Pseudo</label><br/>
-        <input type="text" id="auteur" name="auteur"/>
-    </div>
+    <?php
+    if(isset($_SESSION['pseudo'])){
+        $_POST['auteur'] = $_SESSION['pseudo'];
+    }else{?> 
+        <div>
+            <label for="auteur">Pseudo</label><br/>
+            <input type="text" id="auteur" name="auteur" />
+        </div>
+        <?php
+    }
+        ?>
     <div>
         <label for="commentaire">Commentaire</label><br/>
         <textarea id="commentaire" name="commentaire"></textarea>
     </div>
     <div>
-        <input type="submit"/>
+        <input class="btn btn-light" type="submit"/>
     </div>
 </form>
 
@@ -37,7 +44,12 @@ while ($comment = $comments->fetch())
 ?>
     <p><strong><?= htmlspecialchars($comment['auteur']) ?></strong> le <?= $comment['comment_date'] ?>
     <a href="index.php?action=reportComm&amp;id=<?=$comment['id']?>&amp;idEpisode=<?=$comment['idEpisode']?>">Signaler</a>
+    <?php 
+    if (isset($_SESSION['isAdmin']) and $_SESSION['isAdmin']==1) { ?>
     <a href="index.php?action=deleteComm&amp;id=<?=$comment['id']?>&amp;idEpisode=<?=$comment['idEpisode']?>">Supprimer</a></p>
+    <?php
+    }
+    ?>
     <p><?= nl2br(htmlspecialchars($comment['contenu'])) ?></p>
 <?php
 }

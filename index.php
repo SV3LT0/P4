@@ -28,7 +28,7 @@ try {
         elseif($_GET['action']=='inscription'){
             pageInscription();
         }
-        elseif($_GET['action']=='adduser'){
+        elseif($_GET['action']=='addUser'){
             if(!preg_match('#^(?=.*[a-z])(?=.*[0-9])#',$_POST['mdp'])){
                 throw new Exception('Mot de passe non conforme');
             }
@@ -36,8 +36,14 @@ try {
                 throw new Exception('Les deux mot de passe ne correspondent pas');
             }
             else{
-                inscription($_POST['pseudo'],$_POST['mdp']);
+                addUser($_POST['pseudo'],$_POST['mdp']);
             }
+        }
+        elseif ($_GET['action']=='connexion'){
+            connexion($_POST['pseudo'],$_POST['mdp']);
+        }
+        elseif ($_GET['action']=='deconnexion') {
+            déconnexion();
         }
         elseif($_GET['action']=='newepisode'){
             pageNewEpisode();

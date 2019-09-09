@@ -7,7 +7,7 @@
 <p><a href="index.php">Retour</a></p>
 
 <h3>Inscription</h3>
-<form action="index.php?action=adduser" method="post">
+<form action="index.php?action=addUser" method="post">
     <label for='pseudo'> Pseudo </label>
     <input type='text' name='pseudo' id='pseudo'/><br/>
     <label for='mdp'>Mot de Passe</label>
