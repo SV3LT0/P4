@@ -1,8 +1,17 @@
+@font-face
+{
+    font-family: 'Calligraffiti';
+    src: url("font/Calligraffiti.ttf");
+}
 
 h1
 {
+    margin-top: 10px;
+    font-family: "Calligraffiti";
     text-align: center;
-    color: #fafad4;
+    color: #fafad4;  
+    text-shadow: 0.1em 0.1em 0.2em black;
+    font-size: 4em;
 }
 
 header
@@ -14,6 +23,7 @@ header
 body
 {
     background-image:url(img/alaska.jpg);
+    background-attachment:fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,4 +64,31 @@ section
 .link:hover
 {
     color: black;
+}
+@media all and (max-width: 1024px)
+{
+    h1 
+    {
+        font-size: 3em;
+    }
+}
+
+@media all and (max-width: 768px)
+{
+    .compte
+    {
+        position: static;
+    }
+    section
+    {
+        margin-top: 50px;
+        width: 90%;
+    }
+}
+@media all and (max-width: 460px)
+{
+    section 
+    {
+        margin-top: 120px;
+    }
 }
