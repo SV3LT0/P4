@@ -2,7 +2,7 @@
 <?php session_start(); ?>
 <?php ob_start(); ?>
 
-<p><a href="index.php">Retour</a></p>
+<p><a class ="link" href="index.php">Retour</a></p>
 
 <h3>Modification du chapitre</h3>
 

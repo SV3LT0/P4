@@ -3,7 +3,7 @@
 
 <?php ob_start(); ?>
 
-<p><a href="index.php">Retour</a></p>
+<p><a class="link" href="index.php">Retour</a></p>
 
 <h3>Inscription</h3>
 <form action="index.php?action=addUser" method="post">
@@ -13,7 +13,7 @@
     <input type='password'name='mdp' id='mdp'/><br/>
     <label for='verifMdp'>Répéter votre Mot de Passe</label>
     <input type='password'name='verifMdp' id='verifMdp'/><br/>
-    <input type='submit' value="S'inscrire"/>
+    <input class="btn btn-dark" type='submit' value="S'inscrire"/>
 </form>
 
 <?php $content = ob_get_clean(); ?>

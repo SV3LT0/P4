@@ -4,7 +4,7 @@
 
 <?php 
 if (isset($_SESSION['isAdmin']) and $_SESSION['isAdmin']==1) { ?>
-    <a href="index.php?action=newEpisode"><button type="button" class="btn btn-light">Écrire un nouveau chapitre</button></a><br/>
+    <a href="index.php?action=newEpisode"><button type="button" class="btn btn-dark">Écrire un nouveau chapitre</button></a><br/>
     <h4>Commentaires signalés</h4>
     <?php
     if($nbCommReport>0){
@@ -27,7 +27,7 @@ if (isset($_SESSION['isAdmin']) and $_SESSION['isAdmin']==1) { ?>
 <?php
 }
 ?>
-<h3>Derniers chapitres</h3>
+<h2 id="derniersChapitres">Derniers chapitres</h2>
 
 <?php 
 while ($data = $episodes->fetch())
@@ -39,7 +39,7 @@ while ($data = $episodes->fetch())
             <em>le <?=$data['creation_date_fr'] ?></em>
             <?php 
             if (isset($_SESSION['isAdmin']) and $_SESSION['isAdmin']==1) { ?>
-            <a href="index.php?action=modifier&amp;id=<?=$data['id'] ?>">Modifier chapitre</a>
+            <a class="link" href="index.php?action=modifier&amp;id=<?=$data['id'] ?>">Modifier chapitre</a>
             <?php 
             } 
             ?>
@@ -48,7 +48,7 @@ while ($data = $episodes->fetch())
         <p>
             <?= $data['contenu']?>
             <br/>
-            <a href="index.php?action=post&amp;id=<?=$data['id'] ?>">Commentaires</a>
+            <a class="link" href="index.php?action=post&amp;id=<?=$data['id'] ?>">Commentaires</a>
         </p>
     </div>
 <?php

@@ -1,7 +1,7 @@
 <?php $title = htmlspecialchars($episode['titre']); ?>
 <?php session_start(); ?>
 <?php ob_start(); ?>
-<p><a href="index.php">Retour</a></p>
+<p><a class="link" href="index.php">Retour</a></p>
 
 <div>
     <h2>
@@ -33,7 +33,7 @@
         <textarea id="commentaire" name="commentaire"></textarea>
     </div>
     <div>
-        <input class="btn btn-light" type="submit"/>
+        <input class="btn btn-dark" type="submit"/>
     </div>
 </form>
 
@@ -42,10 +42,10 @@ while ($comment = $comments->fetch())
 {
 ?>
     <p><strong><?= htmlspecialchars($comment['auteur']) ?></strong> le <?= $comment['comment_date'] ?>
-    <a href="index.php?action=reportComm&amp;id=<?=$comment['id']?>&amp;idEpisode=<?=$comment['idEpisode']?>">Signaler</a>
+    <a class="link" href="index.php?action=reportComm&amp;id=<?=$comment['id']?>&amp;idEpisode=<?=$comment['idEpisode']?>">Signaler</a>
     <?php 
     if (isset($_SESSION['isAdmin']) and $_SESSION['isAdmin']==1) { ?>
-    <a href="index.php?action=deleteComm&amp;id=<?=$comment['id']?>&amp;idEpisode=<?=$comment['idEpisode']?>">Supprimer</a></p>
+    <a class="link" href="index.php?action=deleteComm&amp;id=<?=$comment['id']?>&amp;idEpisode=<?=$comment['idEpisode']?>">Supprimer</a></p>
     <?php
     }
     ?>

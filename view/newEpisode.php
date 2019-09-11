@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 
 
-<p><a href="index.php">Retour</a></p>
+<p><a class="link" href="index.php">Retour</a></p>
 
 <h3>Ecriture d'un nouvel épisode</h3>
 
@@ -12,7 +12,7 @@
     <input type="text" name="titre" id="titre"/><br>
     <label for="contenu"></label>
     <textarea name="contenu" id="mytextarea"></textarea><br>
-    <input class="btn btn-light" type="submit"/>
+    <input class="btn btn-dark" type="submit"/>
 </form>
 
 <?php $content = ob_get_clean();?>
