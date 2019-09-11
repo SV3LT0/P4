@@ -45,10 +45,10 @@ try {
         elseif ($_GET['action']=='deconnexion') {
             déconnexion();
         }
-        elseif($_GET['action']=='newepisode'){
+        elseif($_GET['action']=='newEpisode'){
             pageNewEpisode();
         }
-        elseif($_GET['action']=='addepisode'){
+        elseif($_GET['action']=='addEpisode'){
             addNewEpisode($_POST['titre'],$_POST['contenu']);
         }
         elseif($_GET['action']=='deleteComm'){

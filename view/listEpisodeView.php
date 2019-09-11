@@ -2,11 +2,9 @@
 <?php session_start(); ?>
 <?php ob_start(); ?>
 
-<h1>Billet simple pour l'Alaska</h1>
-
 <?php 
 if (isset($_SESSION['isAdmin']) and $_SESSION['isAdmin']==1) { ?>
-    <a href="index.php?action=newepisode"><button type="button" class="btn btn-light">Écrire un nouveau chapitre</button></a><br/>
+    <a href="index.php?action=newEpisode"><button type="button" class="btn btn-light">Écrire un nouveau chapitre</button></a><br/>
     <h4>Commentaires signalés</h4>
     <?php
     if($nbCommReport>0){

@@ -2,13 +2,12 @@
 <?php session_start(); ?>
 <?php ob_start(); ?>
 
-<h1>Billet simple pour l'Alaska</h1>
 
 <p><a href="index.php">Retour</a></p>
 
 <h3>Ecriture d'un nouvel épisode</h3>
 
-<form action="index.php?action=addepisode" method="post">
+<form action="index.php?action=addEpisode" method="post">
     <label for="titre">Titre</label>
     <input type="text" name="titre" id="titre"/><br>
     <label for="contenu"></label>

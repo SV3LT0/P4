@@ -1,7 +1,6 @@
 <?php $title = htmlspecialchars($episode['titre']); ?>
 <?php session_start(); ?>
 <?php ob_start(); ?>
-<h1>Billet simple pour l'Alaska</h1>
 <p><a href="index.php">Retour</a></p>
 
 <div>
