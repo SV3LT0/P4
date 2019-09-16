@@ -130,15 +130,19 @@ function addUser($pseudo, $mdp)
     $userManager = new \P4\model\UserManager();
     $mdp_hash = password_hash($mdp, PASSWORD_DEFAULT);
 
-    //$pseudoUnique = $userManager->testPseudo($pseudo);
+    $pseudoUnique = $userManager->testPseudo($pseudo);
+    if ($pseudoUnique === false) {
        $ajoutUtilisateur = $userManager->inscription($pseudo, $mdp_hash);
 
         if($ajoutUtilisateur === false){
             throw new Exception ('Impossible d\'ajouter l\'utilisateur');
         }
         else{
-            header('Location: index.php');
+            require('view/compteCréé.php');
         }
+    } else {
+        throw new Exception ('Ce nom d\'utilisateur est deja pris');
+    }
 }
 
 function connexion($pseudo, $mdp)

@@ -18,9 +18,9 @@ class UserManager extends Manager
     public function testPseudo($pseudo)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT(*)FROM episode WHERE pseudo=:pseudo');
-        $pseudo = $req->execute(array('pseudo'=>$pseudo));
-        $pseudoUnique = mysqli_num_rows($pseudo);
+        $req = $db->prepare('SELECT id FROM utilisateur WHERE pseudo=?');
+        $req->execute(array($pseudo));
+        $pseudoUnique = $req->fetch();
 
         return $pseudoUnique;
     }
