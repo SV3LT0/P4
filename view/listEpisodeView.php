@@ -13,8 +13,8 @@ if (isset($_SESSION['isAdmin']) and $_SESSION['isAdmin']==1) { ?>
             ?>
             <div id="commSignale">
                 <p><strong><?= htmlspecialchars($commSignale['auteur']) ?></strong> le <?= $commSignale['comment_date'] ?> 
-                <a href="index.php?action=deleteComm&amp;id=<?=$commSignale['id']?>&amp;idEpisode=<?=$commSignale['idEpisode']?>">Supprimer</a>
-                <a href="index.php?action=cancelReport&amp;id=<?=$commSignale['id']?>">Retirer le signalement</a></p>
+                <a class="link" href="index.php?action=deleteComm&amp;id=<?=$commSignale['id']?>&amp;idEpisode=<?=$commSignale['idEpisode']?>">Supprimer</a>
+                <a class="link" href="index.php?action=cancelReport&amp;id=<?=$commSignale['id']?>">Retirer le signalement</a></p>
                 <p><?= nl2br(htmlspecialchars($commSignale['contenu'])) ?></p>
             </div>
         <?php

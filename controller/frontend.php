@@ -121,11 +121,11 @@ function pageNewEpisode()
     require('view/newEpisode.php');
 }
 
-function addNewEpisode($titre, $contenu)
+function addNewEpisode($titre, $contenu, $numeroChapitre)
 {
     
     $postManager = new PostManager();
-    $nouvelEpisode = $postManager->newEpisode($titre, $contenu);
+    $nouvelEpisode = $postManager->newEpisode($titre, $contenu, $numeroChapitre);
 
     if($nouvelEpisode === false){
         throw new Exception ('Impossible d\'ajouter l\'épisode');

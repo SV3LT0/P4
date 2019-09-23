@@ -49,7 +49,7 @@ try {
             pageNewEpisode();
         }
         elseif($_GET['action']=='addEpisode'){
-            addNewEpisode($_POST['titre'],$_POST['contenu']);
+            addNewEpisode($_POST['titre'],$_POST['contenu'],$_POST['numeroChapitre']);
         }
         elseif($_GET['action']=='deleteComm'){
             if(isset($_GET['id']) && $_GET['id']>0){

@@ -8,6 +8,8 @@
 <h3>Ecriture d'un nouvel épisode</h3>
 
 <form action="index.php?action=addEpisode" method="post">
+    <label for="chapitre">Numéro de chapitre</label>
+    <input type="number" name="chapitre" id="chapitre" min="1" max="250"/><br>
     <label for="titre">Titre</label>
     <input type="text" name="titre" id="titre"/><br>
     <label for="contenu"></label>
