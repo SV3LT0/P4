@@ -41,6 +41,15 @@ class PostManager extends Manager
         
         return $updateEpisode;
     }
+
+    public function deletEpisode($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM episode WHERE id = :id');
+        $deleteEpisode = $req->execute(array('id'=>$id));
+
+        return $deleteEpisode;
+    }
 }
 
 ?>

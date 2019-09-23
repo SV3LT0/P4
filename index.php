@@ -70,6 +70,9 @@ try {
         elseif($_GET['action']=='update'){
             updateEpisode($_POST['titre'],$_POST['contenu'],$_GET['id']);
         }
+        elseif ($_GET['action']=='supprimer') {
+            supprimerEpisode($_GET['id']);
+        }
         elseif($_GET['action']=='reportComm'){
             reportComm($_GET['id'],$_GET['idEpisode']);
         }

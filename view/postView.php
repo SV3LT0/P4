@@ -19,7 +19,12 @@
 <form action= "index.php?action=addComment&amp;id=<?=$episode['id']?>" method="post">
     <?php
     if(isset($_SESSION['pseudo'])){
-        $_POST['auteur'] = $_SESSION['pseudo'];
+        $postPseudo = $_SESSION['pseudo'] ?>
+        <div id = "invisible">
+            <label for="auteur">Pseudo</label><br/>
+            <input type="text" id="auteur" name="auteur" value="<?= $postPseudo ?>" />
+        </div>
+    <?php
     }else{?> 
         <div>
             <label for="auteur">Pseudo</label><br/>

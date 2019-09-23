@@ -67,6 +67,15 @@ class CommentManager extends Manager
 
         return $annuleSignale;
     }
+
+    public function deleteCommEp($idEp)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM commentaire WHERE idEpisode = :idEp');
+        $deleteCommEp = $req->execute(array('idEp'=>$idEp));
+
+        return $deleteCommEp;
+    }
 }
 
 ?>

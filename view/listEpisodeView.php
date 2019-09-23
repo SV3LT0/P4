@@ -39,7 +39,8 @@ while ($data = $episodes->fetch())
             <em>le <?=$data['creation_date_fr'] ?></em>
             <?php 
             if (isset($_SESSION['isAdmin']) and $_SESSION['isAdmin']==1) { ?>
-            <a class="link" href="index.php?action=modifier&amp;id=<?=$data['id'] ?>">Modifier chapitre</a>
+            <a class="link" href="index.php?action=modifier&amp;id=<?=$data['id'] ?>">Modifier chapitre</a> ||
+            <a class="link" href="index.php?action=supprimer&amp;id=<?=$data['id'] ?>">Supprimer chapitre</a>
             <?php 
             } 
             ?>

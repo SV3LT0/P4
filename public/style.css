@@ -65,6 +65,13 @@ section
 {
     color: black;
 }
+
+#invisible
+{
+    visibility: hidden;
+    position: absolute;
+}
+
 @media all and (max-width: 1024px)
 {
     h1 

@@ -1,12 +1,17 @@
 <?php
+use \P4\model\PostManager;
+use \P4\model\CommentManager;
+use \P4\model\UserManager;
+
 require_once('model/CommentManager.php');
 require_once('model/PostManager.php');
 require_once('model/UserManager.php');
 
+
 function listEpisodes()
 {
-    $postManager = new \P4\model\PostManager();
-    $commentManager = new \P4\model\CommentManager();
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
 
     $episodes = $postManager->getEpisodes();    
     $commentsReported = $commentManager->getCommentsReported();
@@ -17,16 +22,27 @@ function listEpisodes()
 
 function pageUpdate()
 {
-    $postManager = new \P4\model\PostManager();
+    $postManager = new PostManager();
 
     $episode = $postManager->getEpisode($_GET['id']);
   
     require('view/updateEpisode.php');
 }
 
+function supprimerEpisode($idEpisode)
+{
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
+
+    $deleteEpisode = $postManager->deletEpisode($idEpisode);
+    $deleteCommEp = $commentManager-> deleteCommEp($idEpisode);
+
+    header('Location: index.php');
+}
+
 function updateEpisode($titre, $contenu, $id)
 {
-    $postManager = new \P4\model\PostManager();
+    $postManager = new PostManager();
     $updateEpisode = $postManager->modifierEpisode($titre, $contenu, $id);
 
     if($updateEpisode === false){
@@ -39,8 +55,8 @@ function updateEpisode($titre, $contenu, $id)
 
 function post()
 {
-    $postManager = new \P4\model\PostManager();
-    $commentManager = new \P4\model\CommentManager();
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
 
     $episode = $postManager->getEpisode($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
@@ -50,7 +66,7 @@ function post()
 
 function addComment($episodeId, $auteur, $comment)
 {
-    $commentManager = new \P4\model\CommentManager();    
+    $commentManager = new CommentManager();    
     $affectedLines = $commentManager->postComment($episodeId, $auteur, $comment);
 
     if($affectedLines === false){
@@ -63,7 +79,7 @@ function addComment($episodeId, $auteur, $comment)
 
 function deleteComm($id, $episodeId)
 {
-    $commentManager = new \P4\model\CommentManager();
+    $commentManager = new CommentManager();
     $affectedLines = $commentManager->deleteComment($id);
 
     if($affectedLines === false){
@@ -76,7 +92,7 @@ function deleteComm($id, $episodeId)
 
 function reportComm($id, $episodeId)
 {
-    $commentManager = new \P4\model\CommentManager();
+    $commentManager = new CommentManager();
     $commentSignale = $commentManager->signaleCommentaire($id);
 
     if($commentSignale === false){
@@ -89,7 +105,7 @@ function reportComm($id, $episodeId)
 
 function cancelReport($id)
 {
-    $commentManager = new \P4\model\CommentManager();
+    $commentManager = new CommentManager();
     $annuleSignale = $commentManager->annuleSignale($id);
 
     if($annuleSignale === false){
@@ -108,7 +124,7 @@ function pageNewEpisode()
 function addNewEpisode($titre, $contenu)
 {
     
-    $postManager = new \P4\model\PostManager();
+    $postManager = new PostManager();
     $nouvelEpisode = $postManager->newEpisode($titre, $contenu);
 
     if($nouvelEpisode === false){
@@ -127,7 +143,7 @@ function pageInscription()
 
 function addUser($pseudo, $mdp)
 {
-    $userManager = new \P4\model\UserManager();
+    $userManager = new UserManager();
     $mdp_hash = password_hash($mdp, PASSWORD_DEFAULT);
 
     $pseudoUnique = $userManager->testPseudo($pseudo);
@@ -147,7 +163,7 @@ function addUser($pseudo, $mdp)
 
 function connexion($pseudo, $mdp)
 {
-    $userManager = new \P4\model\UserManager();
+    $userManager = new UserManager();
     $connexionUtilisateur = $userManager->connexionUtilisateur($pseudo, $mdp);
 
     $passwordCorrect = password_verify($mdp, $connexionUtilisateur['mdp']);
