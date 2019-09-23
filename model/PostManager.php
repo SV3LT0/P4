@@ -27,7 +27,7 @@ class PostManager extends Manager
     public function newEpisode($titre, $contenu, $numeroChapitre)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO episode(titre, contenu, creation_date, numeroChapitre)VALUES(:titre,:contenu,CURDATE(), :numeroChapitre)');
+        $req = $db->prepare('INSERT INTO episode(titre, contenu, creation_date, numeroChapitre)VALUES(:titre,:contenu,CURDATE(),:numeroChapitre)');
         $nouvelEpisode = $req->execute(array('titre'=>$titre, 'contenu'=>$contenu, 'numeroChapitre'=>$numeroChapitre));
         
         return $nouvelEpisode;
