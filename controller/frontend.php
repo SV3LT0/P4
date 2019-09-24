@@ -40,10 +40,10 @@ function supprimerEpisode($idEpisode)
     header('Location: index.php');
 }
 
-function updateEpisode($titre, $contenu, $id)
+function updateEpisode($titre, $contenu, $id, $numeroChapitre)
 {
     $postManager = new PostManager();
-    $updateEpisode = $postManager->modifierEpisode($titre, $contenu, $id);
+    $updateEpisode = $postManager->modifierEpisode($titre, $contenu, $id, $numeroChapitre);
 
     if($updateEpisode === false){
         throw new Exception ('Impossible de modifier l\'épisode');

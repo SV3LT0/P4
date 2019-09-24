@@ -49,7 +49,7 @@ try {
             pageNewEpisode();
         }
         elseif($_GET['action']=='addEpisode'){
-            addNewEpisode($_POST['titre'],$_POST['contenu'],$_POST['numeroChapitre']);
+            addNewEpisode($_POST['titre'],$_POST['contenu'],$_POST['chapitre']);
         }
         elseif($_GET['action']=='deleteComm'){
             if(isset($_GET['id']) && $_GET['id']>0){
@@ -68,7 +68,7 @@ try {
             }
         }
         elseif($_GET['action']=='update'){
-            updateEpisode($_POST['titre'],$_POST['contenu'],$_GET['id']);
+            updateEpisode($_POST['titre'],$_POST['contenu'],$_GET['id'], $_POST['chapitre']);
         }
         elseif ($_GET['action']=='supprimer') {
             supprimerEpisode($_GET['id']);
